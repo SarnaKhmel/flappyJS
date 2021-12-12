@@ -1,0 +1,9 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+canvas {
+  box-shadow: 0 10px 10px violet;
+  border-radius: 20px;
+}
