@@ -46,13 +46,26 @@ function draw() {
 
   for (let i = 0; i < pipe.length; i++) {
     context.drawImage(pipeUp, pipe[i].x, pipe[i].y);
-    context.drawImage(
-        pipeBottom,
-        pipe[i].x, 
-        pipe[i].y + pipeUp.height + gap
-    );
-
+    context.drawImage(pipeBottom, pipe[i].x, pipe[i].y + pipeUp.height + gap);
     pipe[i].x -= 2;
+    if (pipe[i].x == 80) {
+      pipe.push({
+        x: canvas.width,
+        y: Math.floor(Math.random() * pipeUp.height) - pipeUp.height,
+      });
+    }
+
+    if (
+      xPos + bird.width >= pipe[i].x &&
+      xPos <= pipe[i].x + pipeUp.width &&
+      (yPos <= pipe[i].y + pipeUp.height ||
+        yPos + bird.height >= pipe[i].y + pipeUp.height + gap)
+    ) {
+      location.reload();
+    }
+    if (pipe[i].x == 0) {
+      score_audio.play();
+    }
   }
 
   context.drawImage(road, 0, canvas.height - road.height);
@@ -66,3 +79,6 @@ function moveUp() {
 }
 
 setInterval(draw, 20);
+
+
+ true ||  false
